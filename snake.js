@@ -1,4 +1,5 @@
-function Snake(speed){
+function Snake(speed,limit){
+    this.limit = limit
     this.x = 0
     this.y = 0
     this.dx = 1
@@ -9,9 +10,12 @@ function Snake(speed){
     this.go = function(callback){
         this.x += this.dx*speed
         this.y += this.dy*speed
+        if(this.x < 0) this.x += this.limit 
+        if(this.x > this.limit ) this.x -= this.limit 
+        if(this.y < 0) this.y += this.limit 
+        if(this.y > this.limit ) this.y -= this.limit 
         this.add([this.x,this.y])
         this.cutail()
-        console.log(this.matter)
         this.showup(callback)
     }
 
@@ -62,7 +66,6 @@ function Snake(speed){
 
     this.showup = function(callback){
         var links = this.matter
-        console.log(links)
         for(var i=0;i<links.length;i++){
             callback(links[i][0],links[i][1],1,1)
         }

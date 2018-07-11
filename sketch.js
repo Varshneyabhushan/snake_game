@@ -6,7 +6,7 @@ var snake
 
 function setup() {
 	createCanvas(scaling*maxi,scaling*maxi)
-	snake = new Snake(1)
+	snake = new Snake(1,49)
 	frameRate(10)
 	foodx = random(49)
 	foody = random(49)
@@ -26,7 +26,7 @@ function draw() {
 	}
 	
 	if(snake.checkEat(foodx,foody)){
-		snake.add([foodx,foody])
+		snake.add([snake.x,snake.y])
 		foodx = random(49)
 		foody = random(49)
 		showFood()
